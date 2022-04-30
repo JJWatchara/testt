@@ -9,44 +9,64 @@
     <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
     <title>IT CUMULATIVE GPA CALCULATOR</title>
+    <script src="https://unpkg.com/vue@3"></script>
 </head>
 <body>
-    <div class="menubar">
-        <div class="container">
-            <div class="logo">
-                <img src="./scr/img/logo.jpg" width="200" height="60">
-            </div>
-            <center>
-                <ul class="menu">
+    <div id="app">
+        <div class="menubar">
+            <div class="container">
+                <div class="logo">
+                    <img src="./scr/img/logo.jpg" width="200" height="60">
+                </div>
+                <center>
                     <ul class="menu">
-                        <li>
-                            <a href="index.html">HOME</a>
-                        </li>
-                        <li>
-                            <a href="suggestion.html">SUGGESTION</a>
-                        </li>
-                        <li>
-                            <a href="branch.html">BRANCH</a>
-                        </li>
-                        <li>
-                            <a href="login.html">LOGIN</a>
-                        </li>
-                        <li>
-                            <a href="register.html">REGISTER</a>
-                        </li>
-                        
-                    </ul>
-                </center>
+                        <ul class="menu">
+                            <li>
+                                <a href="index.html">HOME</a>
+                            </li>
+                            <li>
+                                <a href="suggestion.html">SUGGESTION</a>
+                            </li>
+                            <li>
+                                <a href="branch.html">BRANCH</a>
+                            </li>
+                            <li>
+                                <a href="login.html">LOGIN</a>
+                            </li>
+                            <li>
+                                <a href="register.html">REGISTER</a>
+                            </li>
+                            
+                        </ul>
+                    </center>
+                </div>
             </div>
-        </div>
-        <div class="clearfix"></div>
-
-    <header class="header">
-        <div class="container">
-            <div class="header_area">
-                <img src="./scr/img/PJ_IT.jpg" >
+            <div class="clearfix"></div>
+    
+        <header class="header">
+            <div class="container">
+                <div class="header_area">
+                    <img src="./scr/img/PJ_IT.jpg" >
+                </div>
             </div>
-        </div>
-    </header>
+        </header>
+    </div>
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<script>
+    Vue.createApp({
+        created() {
+            const check = localStorage.getItem("data");
+            console.log(check);
+            if (check === null) {
+                // window.location.href = 'login.html';
+            }
+        },
+      data() {
+        return {
+          message: 'Hello Vue!'
+        }
+      }
+    }).mount('#app')
+  </script>
 </body>
 </html>

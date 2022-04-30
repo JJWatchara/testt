@@ -27,23 +27,36 @@
 
       }
 </style>
+<script src="https://unpkg.com/vue@3"></script>
 </head>
 <body bgcolor=#66ff99>
-<div class="grade">
- <form method="post" action="grade.php">
-      <center><table border=1><tr><td bgcolor=#cc99ff>
-<p><h3> รหัสนักศึกษา= <input type="text" name="Code">
-<p>คำนำหน้าชื่อ<select id="prefix" name="prefix">
-      <option value="นาย">นาย</option>
-      <option value="นางสาว">นางสาว</option>
-      <option value="นาง">นาง</option>
-                   </select>
-<p> ชื่อ-สกุล= <input type="text" name="Name">
-<p> คะแนนเก็บ= <input type="text" name="Scores">
-<p>คะแนนสอบกลางภาค= <input type="text" name="MidScore">
-<p>คะแนนสอบปลายภาค= <input type="text" name="FinalScore"></h3>
-  <p><input type="submit"></td></tr><table></center>
-  </form>
-</div>
+  <div id="app">
+    <div class="grade">
+      <form method="post" action="grade.php">
+           <center><table border=1><tr><td bgcolor=#cc99ff>
+     <p><h3> รหัสนักศึกษา= <input type="text" name="Code">
+     <p>คำนำหน้าชื่อ<select id="prefix" name="prefix">
+           <option value="นาย">นาย</option>
+           <option value="นางสาว">นางสาว</option>
+           <option value="นาง">นาง</option>
+                        </select>
+     <p> ชื่อ-สกุล= <input type="text" name="Name">
+     <p> คะแนนเก็บ= <input type="text" name="Scores">
+     <p>คะแนนสอบกลางภาค= <input type="text" name="MidScore">
+     <p>คะแนนสอบปลายภาค= <input type="text" name="FinalScore"></h3>
+       <p><input type="submit"></td></tr><table></center>
+       </form>
+     </div>
+  </div>
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+  <script>
+      Vue.createApp({
+        data() {
+          return {
+            message: 'Hello Vue!'
+          }
+        }
+      }).mount('#app')
+    </script>
 </body>
 </html>

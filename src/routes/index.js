@@ -1,5 +1,7 @@
+
 const router = require('express').Router();
 const modelUser = require('../models/user');
+const modelGrade = require('../models/grade');
 const bcrypt = require('bcrypt');
 
 
@@ -23,6 +25,8 @@ router.post('/register', async (req, res) => {
 
         data.password = await generatePassword(data.password);
         let user = new modelUser({
+            firstname: data.firstname,
+            lastname: data.lastname,
             username: data.username,
             password: data.password,
             email: data.email
@@ -90,16 +94,51 @@ router.get('/checkUserLogin', async (req, res) => {
     }
 });
 
-
-router.get('/logout', async (req, res) => {
+router.get('/grade/:id', async (req, res) => {
     try {
+        const id = req.params.id
+        res.status(200).json(await modelGrade.findOne({'id_member': id}));
+        return;
+    } catch (err) {
 
-        req.session.dataUser = null;
-        delete req.session.dataUser;
-        res.status(200).json({
-            msg: 'ออกจากระบบสำเร็จ'
+        res.status(400).json({ 
+            msg: 'เกิดข้อผิดพลาด', 
+            err: err.message 
+        });
+
+    }
+});
+router.post('/grade/', async (req, res) => {
+    try {
+        const body = req.body
+        await modelGrade.insert({
+            id_member: body.id_member,
+            course: body.course,
+            credit:body.credit,
+            grade: body.grade,
         })
-        
+        res.status(200).json({status: true});
+        return;
+    } catch (err) {
+
+        res.status(400).json({ 
+            msg: 'เกิดข้อผิดพลาด', 
+            err: err.message 
+        });
+
+    }
+});
+router.patch('/grade/:id', async (req, res) => {
+    try {
+        const id = req.params.id;
+        await modelGrade.updateOne({'_id': id},{ $set: {  
+            id_member: body.id_member,
+            course: body.course,
+            credit:body.credit,
+            grade: body.grade,
+        }})
+        res.status(200).json({status: true});
+        return;
     } catch (err) {
 
         res.status(400).json({ 
@@ -110,6 +149,19 @@ router.get('/logout', async (req, res) => {
     }
 });
 
+router.patch('/grade/:id', async (req, res) => {
+    try {
+        const id = req.params.id;
+        await modelGrade.deleteOne({'_id': id});
+        res.status(200).json({status: true});
+        return;
+    } catch (err) {
 
+        res.status(400).json({ 
+            msg: 'เกิดข้อผิดพลาด', 
+            err: err.message 
+        });
 
+    }
+});
 module.exports = router;

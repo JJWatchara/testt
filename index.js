@@ -11,7 +11,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(cors());
 app.use(expressSession({ resave: false ,secret: '123456' , saveUninitialized: true}));
-app.use(express.static(__dirname + '/www'));
+app.use(express.static(__dirname + '/web'));
 
 
 // app.use(express.json());

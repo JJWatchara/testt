@@ -9,76 +9,114 @@
     <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
     <title>IT CUMULATIVE GPA CALCULATOR</title>
+    <script src="https://unpkg.com/vue@3"></script>
 </head>
 
 <body bgcolor="#CFDBFD">
-    <div class="menubar">
-        <div class="container">
-            <div class="logo">
-                <img src="./scr/img/logo.jpg" width="200" height="60">
+    <div id="app">
+        <div class="menubar">
+            <div class="container">
+                <div class="logo">
+                    <img src="./scr/img/logo.jpg" width="200" height="60">
+                </div>
+                <center>
+                    <ul class="menu">
+                        <li>
+                            <a href="index.html">HOME</a>
+                        </li>
+                        <li>
+                            <a href="suggestion.html">SUGGESTION</a>
+                        </li>
+                        <li>
+                            <a href="branch.html">BRANCH</a>
+                        </li>
+                        <li>
+                            <a href="login.html">LOGIN</a>
+                        </li>
+                        <li>
+                            <a href="register.html">REGISTER</a>
+                        </li>
+                    </ul>
+                    </center>
+                </div>
             </div>
-            <center>
-                <ul class="menu">
-                    <li>
-                        <a href="index.html">HOME</a>
-                    </li>
-                    <li>
-                        <a href="suggestion.html">SUGGESTION</a>
-                    </li>
-                    <li>
-                        <a href="branch.html">BRANCH</a>
-                    </li>
-                    <li>
-                        <a href="login.html">LOGIN</a>
-                    </li>
-                    <li>
-                        <a href="register.html">REGISTER</a>
-                    </li>
-                </ul>
-                </center>
-            </div>
-        </div>
-    </header>
-    <div class="clearfix"></div>
-
-    <table border="2" align="center" bgcolor="#575B83"></br>
-        <colgroup>
-        <col width="200"></col>
-        <col span="2" width="340"></col>
-        </colgroup>
-        <thead>
-        <tr height="40" align="center" valign="center"></br>
-            <th> No </th><th> Subject </th><th> Grade </th>
-        </tr>
-        </thead>
-        <tbody></br>
-        <tr bgcolor="#FEF0F0" align="center" valign="center">
-            <td> 1 </td>
-            <td> COMPUTER PROGRAMMING </td>
-            <td> <select><option />A <option />B+ <option />B <option />C+ <option />C <option />D+ <option />D <option />F</select><br /></td>
-        </tr>
-        <tr bgcolor="#575B83" align="center" valign="center">
-            <td> 2 </td>
-            <td> PROBLEM SOLVING IN INFORMATION </td>
-            <td> <select><option />A <option />B+ <option />B <option />C+ <option />C <option />D+ <option />D <option />F</select><br /></td>
-        </tr>
-        <tr bgcolor="#FEF0F0" align="center" valign="center">
-            <td> 3 </td>
-            <td> FUNDAMENTAL OF GRAPHICS DESIGN </td>
-            <td> <select><option />A <option />B+ <option />B <option />C+ <option />C <option />D+ <option />D <option />F</select><br /></td>
-        </tr>
-        <tr bgcolor="#575B83" align="center" valign="center">
-            <td> 4 </td>
-            <td> OBJECT-ORIENTED PROOGRAMMING </td>
-            <td><select><option />A <option />B+ <option />B <option />C+ <option />C <option />D+ <option />D <option />F</select><br /></td>
-        </tr>
-    </tbody>
+        </header>
+        <div class="clearfix"></div>
     
-</table>
-</table></body></br>
-    <div class="button" ></div>
-    <center><a href="#"><button type="Add" class="button">Add</button></a></center>
- 
+        <table border="2" align="center" bgcolor="#575B83"></br>
+            <colgroup>
+            <col width="200"></col>
+            <col span="2" width="340"></col>
+            </colgroup>
+            <thead>
+            <tr height="40" align="center" valign="center"></br>
+                <th> No </th><th> Subject </th><th> Grade </th>
+            </tr>
+            </thead>
+            <tbody></br>
+            <tr bgcolor="#FEF0F0" align="center" valign="center">
+                <td> 1 </td>
+                <td> COMPUTER PROGRAMMING </td>
+                <td><form action="https://httpbin.org/get">
+                    <input v-model="course1" id="gradecp" type="text" name="gradecp">
+                </td></form>
+            </tr>
+            <tr bgcolor="#575B83" align="center" valign="center">
+                <td> 2 </td>
+                <td> PROBLEM SOLVING IN INFORMATION </td>
+                <td><form action="https://httpbin.org/get">
+                    <input v-model="course2" id="gradepsn" type="text" name="gradepsn">
+                </td></form>
+            </tr>
+            <tr bgcolor="#FEF0F0" align="center" valign="center">
+                <td> 3 </td>
+                <td> FUNDAMENTAL OF GRAPHICS DESIGN </td>
+                <td><form action="https://httpbin.org/get">
+                    <input v-model="course3" id="gradefd" type="text" name="gradefd">
+                </td></form>
+            </tr>
+            <tr bgcolor="#575B83" align="center" valign="center">
+                <td> 4 </td>
+                <td> OBJECT-ORIENTED PROOGRAMMING </td>
+                <td><form action="https://httpbin.org/get">
+                    <input v-model="course4" id="gradeoop" type="text" name="gradeoop">
+                </td></form>
+            </tr>
+        </tbody>
+        
+    </table>
+    </table></br>
+        <div class="button" ></div>
+        
+        <center><button type="button" @click="add()" class="button">Add</button> </center>
+    </div>
+    
+
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script>
+        Vue.createApp({
+          data() {
+            return {
+            id: '',
+              coruse1: '',
+              coruse2: '',
+              coruse3: '',
+              coruse4: '',
+            }
+          },
+          methods: {
+              add() {
+                  axios.post("http://localhost:3000/grade/", {
+                    coruse1: this.coruse1,
+                    coruse2: this.coruse2,
+                    coruse3: this.coruse3,
+                    coruse4: this.coruse4,
+                    id: this.id,
+                  })
+              }
+          }
+        }).mount('#app')
+      </script> 
 </body>
 </html>
 
