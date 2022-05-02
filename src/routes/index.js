@@ -1,9 +1,7 @@
-
 const router = require('express').Router();
 const modelUser = require('../models/user');
 const modelGrade = require('../models/grade');
 const bcrypt = require('bcrypt');
-
 
 const generatePassword = async (password) => {
     const saltRounds = 10;
@@ -12,11 +10,9 @@ const generatePassword = async (password) => {
     return passwordHashed;
 };
 
-
 const comparePassword = async (pass_login, pass_user) => {
     return await bcrypt.compare(pass_login, pass_user);
 };
-
 
 router.post('/register', async (req, res) => {
     try {
@@ -48,7 +44,6 @@ router.post('/register', async (req, res) => {
     }
 });
 
-
 router.post('/login', async (req, res) => {
     try {
  
@@ -77,7 +72,6 @@ router.post('/login', async (req, res) => {
 
     }
 });
-
 
 router.get('/checkUserLogin', async (req, res) => {
     try {

@@ -6,13 +6,11 @@ const mongoose = require('mongoose');
 
 const cors = require('cors');
 
-
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(cors());
 app.use(expressSession({ resave: false ,secret: '123456' , saveUninitialized: true}));
 app.use(express.static(__dirname + '/web'));
-
 
 // app.use(express.json());
 // app.use(expressSession({
@@ -29,7 +27,6 @@ mongoose.set('debug', true);
 
 //! use router 
 app.use('/', require('./src/routes'));
-
 
 
 

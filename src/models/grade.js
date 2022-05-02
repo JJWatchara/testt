@@ -1,6 +1,5 @@
 const mongoose = require('mongoose');
 
-
 const userSchema = mongoose.Schema({
     id_member: { type: String, require: true },
     course: { type: String, require: true },
