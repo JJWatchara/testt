@@ -31,10 +31,7 @@
                             <a href="branch.html">BRANCH</a>
                         </li>
                         <li>
-                            <a href="login.html">LOGIN</a>
-                        </li>
-                        <li>
-                            <a href="register.html">REGISTER</a>
+                            <a href="login.html">LOGOUT</a>
                         </li>
                     </ul>
                     </center>
@@ -58,28 +55,28 @@
                 <td> 1 </td>
                 <td> COMPUTER PROGRAMMING </td>
                 <td><form action="https://httpbin.org/get">
-                    <input v-model="course1" id="gradecp" type="text" name="gradecp">
+                    <input v-model="coruse1" id="gradecp" type="text" name="gradecp">
                 </td></form>
             </tr>
             <tr bgcolor="#575B83" align="center" valign="center">
                 <td> 2 </td>
                 <td> PROBLEM SOLVING IN INFORMATION </td>
                 <td><form action="https://httpbin.org/get">
-                    <input v-model="course2" id="gradepsn" type="text" name="gradepsn">
+                    <input v-model="coruse2" id="gradepsn" type="text" name="gradepsn">
                 </td></form>
             </tr>
             <tr bgcolor="#FEF0F0" align="center" valign="center">
                 <td> 3 </td>
                 <td> FUNDAMENTAL OF GRAPHICS DESIGN </td>
                 <td><form action="https://httpbin.org/get">
-                    <input v-model="course3" id="gradefd" type="text" name="gradefd">
+                    <input v-model="coruse3" id="gradefd" type="text" name="gradefd">
                 </td></form>
             </tr>
             <tr bgcolor="#575B83" align="center" valign="center">
                 <td> 4 </td>
                 <td> OBJECT-ORIENTED PROOGRAMMING </td>
                 <td><form action="https://httpbin.org/get">
-                    <input v-model="course4" id="gradeoop" type="text" name="gradeoop">
+                    <input v-model="coruse4" id="gradeoop" type="text" name="gradeoop">
                 </td></form>
             </tr>
         </tbody>
@@ -95,6 +92,13 @@
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <script>
         Vue.createApp({
+            created() {
+            const check = localStorage.getItem("data");
+            console.log(check);
+            if (check === null) {
+                window.location.href = 'login.html';
+            }
+        },
           data() {
             return {
             id: '',
@@ -106,13 +110,46 @@
           },
           methods: {
               add() {
-                  axios.post("http://localhost:3000/grade/", {
-                    coruse1: this.coruse1,
-                    coruse2: this.coruse2,
-                    coruse3: this.coruse3,
-                    coruse4: this.coruse4,
-                    id: this.id,
-                  })
+                //   axios.post("https://calculate.app.ruk-com.cloud/grade/", {
+                //     coruse1: this.coruse1,
+                //     coruse2: this.coruse2,
+                //     coruse3: this.coruse3,
+                //     coruse4: this.coruse4,
+                //     id: this.id,
+                //   })
+                this.cal();
+              },
+              change(grade) {
+                  if (grade.toLowerCase() == 'a') {
+                      return 4;
+                  } else if (grade.toLowerCase() == 'b+') {
+                    return 3.5;
+                  } else if (grade.toLowerCase() == 'b') {
+                      return 3;
+                  } else if (grade.toLowerCase() == 'c+') {
+                      return 2.5
+                  } else if (grade.toLowerCase() == 'c') {
+                      return 2;
+                  } else if (grade.toLowerCase() == 'd+') {
+                      return 1.5;
+                  } else if (grade.toLowerCase() == 'd') {
+                      return 1;
+                  } else {
+                      return 0;
+                  }
+              },
+              cal() {
+                  if (this.change(this.coruse1) >= 3 && this.change(this.coruse2) >= 3 && this.change(this.coruse4) >= 3) {
+                    window.location.href = 'software.html';
+                  } else if (this.change(this.coruse1) >= 3 && this.change(this.coruse2) >= 3) {
+                    window.location.href = 'data science.html';
+                  } else if (this.change(this.coruse3) >= 3) {
+                    window.location.href = 'Multimedia.html';
+                  } else if (this.change(this.coruse3) >= 2) {
+                    window.location.href = 'digital.html';
+                  } else {
+                    window.location.href = 'digital.html';
+                  }
               }
           }
         }).mount('#app')

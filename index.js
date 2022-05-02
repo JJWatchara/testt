@@ -20,7 +20,7 @@ app.use(express.static(__dirname + '/web'));
 //   cookie: { }
 // }))
 
-mongoose.connect('mongodb://localhost:27017/me_tang', { useNewUrlParser: true, useUnifiedTopology: true })
+mongoose.connect('mongodb://admin:QDFxip10524@node31415-calculate.app.ruk-com.cloud:27017/admin', { useNewUrlParser: true, useUnifiedTopology: true })
 .then( () => console.log("database successfully connected") )
 .catch( (err) => { console.log("Could not connect to database : " + err); /*process.exit(1)*/ } );
 mongoose.set('debug', true);

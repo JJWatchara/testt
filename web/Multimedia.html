@@ -30,12 +30,8 @@
                             <a href="branch.html">BRANCH</a>
                         </li>
                         <li>
-                            <a href="login.html">LOGIN</a>
+                            <a href="login.html">LOGOUT</a>
                         </li>
-                        <li>
-                            <a href="register.html">REGISTER</a>
-                        </li>
-                        
                     </ul>
                     </center>
                 </div>
@@ -119,6 +115,13 @@
         <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
         <script>
             Vue.createApp({
+                created() {
+            const check = localStorage.getItem("data");
+            console.log(check);
+            if (check === null) {
+                window.location.href = 'login.html';
+            }
+        },
               data() {
                 return {
                   message: 'Hello Vue!'
